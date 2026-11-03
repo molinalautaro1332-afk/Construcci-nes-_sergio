@@ -1,0 +1,372 @@
+```html
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construcciones Sergio | Expertos en Obras</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#FACC15', /* Amarillo intenso */
+                            black: '#171717',
+                            dark: '#262626',
+                            light: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para animaciones y detalles */
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .gallery-img-container { overflow: hidden; border-radius: 0.5rem; }
+        .gallery-img { transition: transform 0.5s ease; }
+        .gallery-img-container:hover .gallery-img { transform: scale(1.1); }
+        
+        /* Botón flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: translateY(-5px);
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
+        }
+        @media (max-width: 768px) {
+            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-brand-light text-gray-800 antialiased selection:bg-brand-yellow selection:text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-brand-black text-white shadow-lg border-b-4 border-brand-yellow transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo del usuario -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#inicio" class="flex items-center gap-3">
+                        <img src="1000661965.jpg" alt="Construcciones Sergio Logo" class="h-12 w-12 object-cover rounded-full border-2 border-brand-yellow">
+                        <span class="font-heading font-bold text-xl tracking-wide uppercase leading-tight">
+                            Construcciones<br><span class="text-brand-yellow">Sergio</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#inicio" class="hover:text-brand-yellow font-semibold transition-colors">Inicio</a>
+                    <a href="#nosotros" class="hover:text-brand-yellow font-semibold transition-colors">Nosotros</a>
+                    <a href="#servicios" class="hover:text-brand-yellow font-semibold transition-colors">Servicios</a>
+                    <a href="#trabajos" class="hover:text-brand-yellow font-semibold transition-colors">Trabajos</a>
+                    <a href="https://wa.me/5491180013763?text=Hola%20he%20visto%20la%20web%20y%20quiero%20una%20cotizaci%C3%B3n." target="_blank" class="bg-brand-yellow text-brand-black px-5 py-2 rounded-lg font-bold hover:bg-yellow-400 transition-colors flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Contacto
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-yellow hover:text-white focus:outline-none text-3xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-gray-700 pb-4">
+            <div class="px-4 pt-2 space-y-2 flex flex-col">
+                <a href="#inicio" class="mobile-link text-white block py-2 font-semibold hover:text-brand-yellow">Inicio</a>
+                <a href="#nosotros" class="mobile-link text-white block py-2 font-semibold hover:text-brand-yellow">Nosotros</a>
+                <a href="#servicios" class="mobile-link text-white block py-2 font-semibold hover:text-brand-yellow">Servicios</a>
+                <a href="#trabajos" class="mobile-link text-white block py-2 font-semibold hover:text-brand-yellow">Trabajos Realizados</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inicio (Hero) -->
+    <header id="inicio" class="relative flex items-center justify-center min-h-screen pt-20">
+        <!-- Fondo oscuro elegante -->
+        <div class="absolute inset-0 bg-brand-black z-0">
+            <!-- Patrón sutil para darle textura al fondo negro -->
+            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        </div>
+        
+        <div class="container relative z-10 mx-auto px-4 text-center">
+            <div class="inline-block bg-brand-yellow text-brand-black font-bold px-4 py-1 rounded-full mb-6 text-sm uppercase tracking-widest shadow-lg">
+                Calidad y Confianza
+            </div>
+            <h1 class="text-white font-heading font-extrabold text-5xl md:text-7xl mb-6 uppercase leading-tight text-shadow">
+                Construimos tus <br><span class="text-brand-yellow">Proyectos</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-2xl mb-10 max-w-2xl mx-auto font-light">
+                Especialistas en remodelaciones, albañilería en general y obras desde cero. Transformamos tu hogar con responsabilidad y terminaciones impecables.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#trabajos" class="bg-transparent border-2 border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-brand-black font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg">
+                    Ver Trabajos
+                </a>
+                <a href="https://wa.me/5491180013763?text=Hola%20he%20visto%20la%20web%20y%20quiero%20una%20cotizaci%C3%B3n." target="_blank" class="bg-brand-yellow hover:bg-yellow-400 text-brand-black font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 text-lg flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar Ahora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sobre Nosotros -->
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="relative rounded-lg shadow-2xl p-2 bg-brand-yellow">
+                        <!-- Reutilizamos el logo o una foto genérica para representar al equipo -->
+                        <img src="1000661965.jpg" alt="Construcciones Sergio" class="w-full h-auto object-cover rounded shadow-inner">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-brand-yellow font-bold tracking-widest uppercase text-sm mb-2">Sobre Nosotros</h2>
+                    <h3 class="font-heading text-4xl font-bold text-brand-black mb-6">Compromiso y Solidez en cada ladrillo.</h3>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        En <strong class="text-brand-black">Construcciones Sergio</strong>, nos apasiona lo que hacemos. Contamos con amplia experiencia realizando trabajos de todo tipo en el rubro de la construcción, desde los cimientos hasta los detalles finales.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Nuestro objetivo principal es la satisfacción de nuestros clientes. Por eso, garantizamos prolijidad, uso de buenos materiales y cumplimiento en los tiempos de entrega. Tu tranquilidad es nuestra mejor obra.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-hard-hat text-2xl text-brand-yellow"></i>
+                            <span class="font-bold text-brand-black">Profesionalismo</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-ruler-combined text-2xl text-brand-yellow"></i>
+                            <span class="font-bold text-brand-black">Precisión</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-20 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-brand-yellow font-bold tracking-widest uppercase text-sm mb-2">Especialidades</h2>
+            <h3 class="font-heading text-4xl font-bold text-brand-black mb-12">Nuestros Servicios</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-b-4 border-brand-yellow hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-brand-black text-brand-yellow rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-black mb-3">Albañilería General</h4>
+                    <p class="text-gray-600">Levantamiento de paredes, revoques, contrapisos, carpetas y estructuras de hormigón con máxima resistencia.</p>
+                </div>
+                
+                <!-- Servicio 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-b-4 border-brand-yellow hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-brand-black text-brand-yellow rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-black mb-3">Remodelaciones</h4>
+                    <p class="text-gray-600">Ampliaciones y refacciones integrales para el hogar. Modernizamos tus ambientes, baños y cocinas.</p>
+                </div>
+                
+                <!-- Servicio 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md border-b-4 border-brand-yellow hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-brand-black text-brand-yellow rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-black mb-3">Colocaciones</h4>
+                    <p class="text-gray-600">Instalación precisa de cerámicas, porcelanatos, revestimientos y pisos, cuidando cada nivel y terminación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trabajos Realizados (Galería solicitada) -->
+    <section id="trabajos" class="py-20 bg-brand-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-brand-yellow font-bold tracking-widest uppercase text-sm mb-2">Nuestro Portafolio</h2>
+                <h3 class="font-heading text-4xl font-bold text-white mb-4">Trabajos Realizados</h3>
+                <div class="w-24 h-1 bg-brand-yellow mx-auto rounded"></div>
+                <p class="mt-6 text-gray-400 max-w-2xl mx-auto">Te mostramos el avance y los resultados de nuestras obras. Las imágenes hablan por sí solas.</p>
+            </div>
+
+            <!-- Grid de Galería -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Imagen 1 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661967.jpg" alt="Trabajo de topografía" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Topografía y Medición</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661966.jpg" alt="Trabajo en vereda" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Armado de Veredas</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661969.jpg" alt="Armado de losa" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Estructuras y Losas</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661915.jpg" alt="Baño terminado" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Baños Terminados</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 5 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661905.jpg" alt="Colocación de pisos" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Colocación de Pisos</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 6 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661908.jpg" alt="Fachada en construcción" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Fachadas y Frentes</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 7 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661904.jpg" alt="Escalera de hormigón" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Escaleras de Hormigón</span>
+                    </div>
+                </div>
+
+                <!-- Imagen 8 -->
+                <div class="gallery-img-container relative group h-64 bg-brand-dark">
+                    <img src="1000661913.jpg" alt="Levantamiento de paredes" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-brand-yellow font-bold text-lg px-2 text-center">Levantamiento de Muros</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto (Call to Action) -->
+    <section id="contacto" class="py-20 bg-brand-yellow text-brand-black">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-heading text-4xl md:text-5xl font-extrabold mb-6">¿Tenés un proyecto en mente?</h2>
+            <p class="text-xl mb-10 font-medium opacity-90">
+                Contactanos hoy mismo por WhatsApp para recibir asesoramiento y solicitar un presupuesto a medida.
+            </p>
+            <div class="bg-white p-8 rounded-xl shadow-xl inline-block">
+                <p class="text-lg font-bold mb-4">Envianos un mensaje directo:</p>
+                <a href="https://wa.me/5491180013763?text=Hola%20he%20visto%20la%20web%20y%20quiero%20una%20cotizaci%C3%B3n." target="_blank" 
+                   class="inline-flex items-center gap-3 bg-[#25d366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-full shadow-lg transition-transform hover:scale-105 text-xl">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    11 8001-3763
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-gray-800 py-10 text-center text-gray-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="1000661965.jpg" alt="Logo Footer" class="h-8 w-8 object-cover rounded-full">
+                <span class="font-heading font-bold text-lg text-white uppercase">Construcciones <span class="text-brand-yellow">Sergio</span></span>
+            </div>
+            <p class="mb-4">Obras, albañilería y remodelaciones para el hogar.</p>
+            <p class="text-sm">&copy; <span id="year"></span> Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://wa.me/5491180013763?text=Hola%20he%20visto%20la%20web%20y%20quiero%20una%20cotizaci%C3%B3n." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Año actual dinámico en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Lógica del menú móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Cerrar menú móvil al tocar un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
+```
